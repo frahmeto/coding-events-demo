@@ -2,6 +2,7 @@ package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
+import org.springframework.expression.EvaluationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,26 @@ public class EventController {
             }
         }
 
+        return "redirect:";
+    }
+    @GetMapping("edit")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        // controller code will go here
+        //Event eventToEdit = EventData.getById(eventId);
+        //model.addAttribute("event", eventToEdit);
+        model.addAttribute("title", "Edit event" + EventData.getById(eventId).getName() +"(id=" + eventId +")");
+        model.addAttribute("events", EventData.getById(eventId));
+        return "events/edit";
+    }
+
+    @PostMapping("edit")
+    public String processEditForm(int eventId, String name, String description) {
+        // controller code will go here
+//       Event eventToEdit = EventData.getById(eventId);
+//        eventToEdit.setName(name);
+//        eventToEdit.setDescription(description);
+        EventData.getById(eventId).setName(name);
+        EventData.getById(eventId).setDescription(description);
         return "redirect:";
     }
 

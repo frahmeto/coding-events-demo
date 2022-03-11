@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head"></head>
+<body class="container">
+
+<header th:replace="fragments :: header"></header>
+
+<table class="table">
+    <tr class="table-primary">
+        <th>Category Name</th>
+    </tr>
+    <tr th:each="category : ${categories}">
+        <td th:rext="${category.name}"></td>
+    </tr>
+
+</table>
+</body>
+</html>
